@@ -6,6 +6,9 @@ import requests
 import os
 import urllib.request
 from youtube_search import YoutubeSearch
+import conv
+import fnmatch
+
 
 
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -68,7 +71,7 @@ for i in tracks:
 		string = string +artist+" "
 	print(string)
 	tracklist.append(string)
-print(tracklist)
+##print(tracklist)
 
 
 
@@ -80,7 +83,7 @@ def downloadaudio(url, title):
 
 failed = []
 
-print(oldlist)
+##print(oldlist)
 
 for i in tracklist:
 	e = i + "\n"
@@ -98,6 +101,21 @@ for i in tracklist:
 		except:
 			failed.append(i)
 
+
+
+
+
+
 print(failed)
 
 #wc7JPaRV5uU
+
+m4as = []
+for root, dirs, files in os.walk(os.getcwd()):
+    m4as += fnmatch.filter(files, '*.m4a')
+##print(m4as)
+count = 0
+for i in m4as:
+	print(i+ " "+str(count))
+	count= count +1
+	os.system("ftransc -r -q extreme -f mp3 "+"'"+i+"'")
