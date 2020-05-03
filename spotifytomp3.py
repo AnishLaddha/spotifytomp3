@@ -9,7 +9,10 @@ from urllib.request import urlopen
 import os.path
 import click
 from spotipy.oauth2 import SpotifyClientCredentials
+from art import *
 
+Art = text2art("SpotifyToMP3")
+print(Art)
 
 
 
@@ -102,11 +105,18 @@ def tagger(songdata, file):
 
 def youtubelink(song, artist):
     i = song +" by "+ artist
-    searchresults = YoutubeSearch(i+" audio" , max_results=1).to_dict()
-    searchresult = searchresults[0]
-    searchid = searchresult['id']
-    if searchid[0] == "-":
-        searchid = searchid[1:]
+    try:
+        searchresults = YoutubeSearch(i+" audio" , max_results=1).to_dict()
+        searchresult = searchresults[0]
+        searchid = searchresult['id']
+        if searchid[0] == "-":
+           searchid = searchid[1:]
+    except:
+        searchresults = YoutubeSearch(i+" audio" , max_results=1).to_dict()
+        searchresult = searchresults[0]
+        searchid = searchresult['id']
+        if searchid[0] == "-":
+           searchid = searchid[1:]
     return searchid
 
 
@@ -147,20 +157,25 @@ def run(username, playlist):
     	if i['name'] == usrpl:
     		pluri = i['uri']
 
+
     results = sp.playlist_tracks(pluri)
     tracks = results['items']
     tracklist = createDict(tracks) ##creates the list of songs, works fine
     
     for track in tracklist:
-        print(track)
+        ##print(track)
         song = track.sname
         if songexists(song) == False:
             artistlist = track.sartist
             artiststr = ', '.join(artistlist)
-            link = youtubelink(song, artiststr)
-            downloader(link, song)
-            convertor(song)
-            tagger(track, song+".mp3")
+            
+            try:
+                link = youtubelink(song, artiststr)
+                downloader(link, song)
+                convertor(song)
+                tagger(track, song+".mp3")
+            except:
+                print(song)
 
 
 if __name__ == "__main__":
