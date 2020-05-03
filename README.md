@@ -2,7 +2,7 @@
 
 Hi everyone. spmp3 is a simple script that allows you to convert your spotify playlist to a mp3 library. You can also account for updates to playlists, by just running the progam again. It would be useful for home media servers, and it lets you use the amazing spotify UI. It doesnt force you to listen to adds or be beholden to a single platform.
 
-###NOW INCLUDING META DATA, CLEAN FILE NAMES, AND COVER ART!!!
+### NOW INCLUDING META DATA, CLEAN FILE NAMES, AND COVER ART!!!
 
 ## Getting Started/Setup
 
