@@ -125,8 +125,8 @@ def songexists(song):
               help='The public playlist you want to download')
 
 def run(username, playlist):
-    client_credentials_manager = SpotifyClientCredentials(client_id='2528e9e7f4fa492aaecfc9e07c18f444',
-                                                      client_secret='c1595dd6fe0a406ca075ba7e5733ec79')
+    client_credentials_manager = SpotifyClientCredentials(client_id='',
+                                                      client_secret='')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     pp = pprint.PrettyPrinter(indent=4)
 
